@@ -39,4 +39,6 @@ class NICO extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    protected $dates = ['deleted_at'];
 }
