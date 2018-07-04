@@ -30,9 +30,7 @@
       @yield('content')
     </div>
   </div>
-
   @yield('footer')
-
   <footer class="page-footer grey darken-3">
     <div class="container">
       <div class="footer-copyright">
