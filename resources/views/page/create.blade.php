@@ -101,7 +101,6 @@
       <label>Region Locked?</label>
     </div>
   </div>
-  <input type="hidden" name="key" value="jZ83Xych2SnJQnFgHG9v">
   {{ csrf_field() }}
   <div class="row">
     <button type="submit" class="waves-effect waves-light btn blue">SUBMIT</button>

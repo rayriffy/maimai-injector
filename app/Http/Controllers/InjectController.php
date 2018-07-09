@@ -20,7 +20,7 @@ class InjectController extends Controller
      */
     public function index()
     {
-        return response('{ "response": "OK","site":[{"url":"https://maiinjector.rayriffy.com/inject/create","description":"Inserting Data","remark":"This system has not capability to check duplicate data. Please becareful while inserting data."},{"url":"https://maiinjector.rayriffy.com/inject/{CATEGORY}","description":"Showing data on prefered category","remark":"Allowed URL: pops,nico,toho,sega,game,orig [CASE SENSITIVE]"}]}')->header('Content-Type','application/json');
+        return response('{ "response": "OK","site":[{"url":"'.route('inject.create').'","description":"Inserting Data","remark":"This system has not capability to check duplicate data. Please becareful while inserting data."},{"url":"'.url()->current().'/{CATEGORY}","description":"Showing data on prefered category","remark":"Allowed URL: pops,nico,toho,sega,game,orig [CASE SENSITIVE]"}]}')->header('Content-Type','application/json');
     }
 
     /**
@@ -42,24 +42,24 @@ class InjectController extends Controller
     public function store(Request $request)
     {
         if($request->get('cat') == 'pops') {
-            POPS::create($request->all());
+            POPS::firstOrCreate($request->all());
         }
         else if($request->get('cat') == 'nico') {
-            NICO::create($request->all());
+            NICO::firstOrCreate($request->all());
         }
         else if($request->get('cat') == 'toho') {
-            TOHO::create($request->all());
+            TOHO::firstOrCreate($request->all());
         }
         else if($request->get('cat') == 'sega') {
-            SEGA::create($request->all());
+            SEGA::firstOrCreate($request->all());
         }
         else if($request->get('cat') == 'game') {
-            GAME::create($request->all());
+            GAME::firstOrCreate($request->all());
         }
         else if($request->get('cat') == 'orig') {
-            ORIG::create($request->all());
+            ORIG::firstOrCreate($request->all());
         }
-        return response('{ "response": "Done" }')->header('Content-Type','application/json');
+        return response('{ "response": "Created" }')->header('Content-Type','application/json');
         //return redirect('/');
 }
 
@@ -103,7 +103,26 @@ class InjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data=explode(".",$id);
+        if($data[0] == 'pops') {
+            $res = POPS::findOrFail($data[1]);
+        }
+        else if($data[0] == 'nico') {
+            $res = NICO::findOrFail($data[1]);
+        }
+        else if($data[0] == 'toho') {
+            $res = TOHO::findOrFail($data[1]);
+        }
+        else if($data[0] == 'sega') {
+            $res = SEGA::findOrFail($data[1]);
+        }
+        else if($data[0] == 'game') {
+            $res = GAME::findOrFail($data[1]);
+        }
+        else if($data[0] == 'orig') {
+            $res = ORIG::findOrFail($data[1]);
+        }
+        return view('page.edit')->with('cat', $data[0])->with('data', $res);
     }
 
     /**
@@ -116,6 +135,32 @@ class InjectController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data=explode(".",$id);
+        if($data[0] == 'pops') {
+            $res = POPS::findOrFail($data[1]);
+            $res->update($request->all());
+        }
+        else if($data[0] == 'nico') {
+            $res = NICO::findOrFail($data[1]);
+            $res->update($request->all());
+        }
+        else if($data[0] == 'toho') {
+            $res = TOHO::findOrFail($data[1]);
+            $res->update($request->all());
+        }
+        else if($data[0] == 'sega') {
+            $res = SEGA::findOrFail($data[1]);
+            $res->update($request->all());
+        }
+        else if($data[0] == 'game') {
+            $res = GAME::findOrFail($data[1]);
+            $res->update($request->all());
+        }
+        else if($data[0] == 'orig') {
+            $res = ORIG::findOrFail($data[1]);
+            $res->update($request->all());
+        }
+        return response('{ "response": "Updated" }')->header('Content-Type','application/json');
     }
 
     /**
@@ -127,5 +172,25 @@ class InjectController extends Controller
     public function destroy($id)
     {
         //
+        $data=explode(".",$id);
+        if($data[0] == 'pops') {
+            $res = POPS::whereId($data[1])->delete();
+        }
+        else if($data[0] == 'nico') {
+            $res = NICO::whereId($data[1])->delete();
+        }
+        else if($data[0] == 'toho') {
+            $res = TOHO::whereId($data[1])->delete();
+        }
+        else if($data[0] == 'sega') {
+            $res = SEGA::whereId($data[1])->delete();
+        }
+        else if($data[0] == 'game') {
+            $res = GAME::whereId($data[1])->delete();
+        }
+        else if($data[0] == 'orig') {
+            $res = ORIG::whereId($data[1])->delete();
+        }
+        return response('{ "response": "Deleted" }')->header('Content-Type','application/json');
     }
 }

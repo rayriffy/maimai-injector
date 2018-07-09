@@ -22,6 +22,7 @@
 <table class="highlight responsive-table">
   <thead>
     <tr>
+      <th>Actions</th>
       <th>id</th>
       <th>image</th>
       <th>name_en</th>
@@ -44,23 +45,24 @@
   <tbody>        
     @foreach ($data as $dat)
     <tr>
-      <td>{{ $dat['id'] }}</td>
-      <td><img class="responsive-img" src="{{ $dat['image_url'] }}" /></td>
-      <td>{{ $dat['name_en'] }}</td>
-      <td>{{ $dat['name_jp'] }}</td>
-      <td>{{ $dat['artist_en'] }}</td>
-      <td>{{ $dat['artist_jp'] }}</td>
-      <td>{{ $dat['version'] }}</td>
-      <td>{{ $dat['bpm'] }}</td>
-      <td>{{ $dat['level_easy'] }}</td>
-      <td>{{ $dat['level_basic'] }}</td>
-      <td>{{ $dat['level_advanced'] }}</td>
-      <td>{{ $dat['level_expert'] }}</td>
-      <td>{{ $dat['level_master'] }}</td>
-      <td>{{ $dat['level_remaster'] }}</td>
-      <td>{{ $dat['listen_youtube'] }}</td>
-      <td>{{ $dat['listen_niconico'] }}</td>
-      <td>{{ $dat['regionlocked'] }}</td>
+      <td><a class="waves-effect waves-light btn blue small" href="/inject/{{ $cat }}.{{ $dat->id }}/edit">EDIT</a></td>
+      <td>{{ $dat->id }}</td>
+      <td><img class="responsive-img" src="{{ $dat->image_url }}" /></td>
+      <td>{{ $dat->name_en }}</td>
+      <td>{{ $dat->name_jp }}</td>
+      <td>{{ $dat->artist_en }}</td>
+      <td>{{ $dat->artist_jp }}</td>
+      <td>{{ $dat->version }}</td>
+      <td>{{ $dat->bpm }}</td>
+      <td>{{ $dat->level_easy }}</td>
+      <td>{{ $dat->level_basic }}</td>
+      <td>{{ $dat->level_advanced }}</td>
+      <td>{{ $dat->level_expert }}</td>
+      <td>{{ $dat->level_master }}</td>
+      <td>{{ $dat->level_remaster }}</td>
+      <td>{{ $dat->listen_youtube }}</td>
+      <td>{{ $dat->listen_niconico }}</td>
+      <td>{{ $dat->regionlocked }}</td>
     </tr>
     @endforeach
   </tbody>
