@@ -42,22 +42,22 @@ class InjectController extends Controller
     public function store(Request $request)
     {
         if($request->get('cat') == 'pops') {
-            POPS::firstOrCreate($request->all());
+            POPS::firstOrCreate($request->except(['cat','_token']));
         }
         else if($request->get('cat') == 'nico') {
-            NICO::firstOrCreate($request->all());
+            NICO::firstOrCreate($request->except(['cat','_token']));
         }
         else if($request->get('cat') == 'toho') {
-            TOHO::firstOrCreate($request->all());
+            TOHO::firstOrCreate($request->except(['cat','_token']));
         }
         else if($request->get('cat') == 'sega') {
-            SEGA::firstOrCreate($request->all());
+            SEGA::firstOrCreate($request->except(['cat','_token']));
         }
         else if($request->get('cat') == 'game') {
-            GAME::firstOrCreate($request->all());
+            GAME::firstOrCreate($request->except(['cat','_token']));
         }
         else if($request->get('cat') == 'orig') {
-            ORIG::firstOrCreate($request->all());
+            ORIG::firstOrCreate($request->except(['cat','_token']));
         }
         return response('{ "response": "Created" }')->header('Content-Type','application/json');
         //return redirect('/');
