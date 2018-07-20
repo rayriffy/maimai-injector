@@ -59,7 +59,7 @@ class InjectController extends Controller
         else if($request->get('cat') == 'orig') {
             ORIG::firstOrCreate($request->except(['cat','_token']));
         }
-        return response('{ "response": "Created" }')->header('Content-Type','application/json');
+        return response('{ "response": "Created","site":[{"url":"'.route('inject.create').'","description":"Inserting Data","remark":"This system has not capability to check duplicate data. Please becareful while inserting data."},{"url":"'.url()->current().'/{CATEGORY}","description":"Showing data on prefered category","remark":"Allowed URL: pops,nico,toho,sega,game,orig [CASE SENSITIVE]"}]}')->header('Content-Type','application/json');
         //return redirect('/');
 }
 
